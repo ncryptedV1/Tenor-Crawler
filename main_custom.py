@@ -10,7 +10,9 @@ from concurrent.futures import ThreadPoolExecutor
 
 BASE_URL = "https://tenor.com/search"
 SEARCH_TERM = "sausage party"
-MAX_ITEM_COUNT = 20
+# restricted to 50 for initial load
+# expansion possible, but requires more effort
+MAX_ITEM_COUNT = 50
 BASE_DOWNLOAD_DIR = f"downloaded"
 DOWNLOAD_DIR = f"{BASE_DOWNLOAD_DIR}/{SEARCH_TERM}"
 
@@ -39,7 +41,7 @@ def main():
     clean()
 
     # fetch gif list
-    search_url = f"{BASE_URL}/{urllib.parse.quote(SEARCH_TERM)}-gifs"
+    search_url = f"{BASE_URL}/{urllib.parse.quote(SEARCH_TERM)}-gifs?limit={MAX_ITEM_COUNT}"
     bs = BeautifulSoup(urllib.request.urlopen(search_url).read(), features='lxml')
     gif_list_div = bs.find('div', attrs={'class': 'GifList'})
 
@@ -60,7 +62,7 @@ def main():
         """if company_count % 400 == 0:
             future.result()"""
         # sync variant
-        # leech_company(company_url_info, db_pool, sectors, zips, cities)
+        # download_gif(gif_item_src)
         gif_count += 1
 
         # cancel if max crawl count has been reached
