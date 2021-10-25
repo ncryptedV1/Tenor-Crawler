@@ -1,12 +1,11 @@
+import json
+import os
+import shutil
 import string
 import urllib
 import urllib.parse
-import shutil
-import os
-import json
-
-from urllib import request
 from concurrent.futures import ThreadPoolExecutor
+from urllib import request
 
 SEARCH_TERM = "sausage party"
 MAX_ITEM_COUNT = 100

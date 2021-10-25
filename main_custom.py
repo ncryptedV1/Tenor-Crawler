@@ -1,12 +1,12 @@
+import os
+import shutil
 import string
 import urllib
 import urllib.parse
-import shutil
-import os
-
-from urllib import request
-from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
+from urllib import request
+
+from bs4 import BeautifulSoup
 
 BASE_URL = "https://tenor.com/search"
 SEARCH_TERM = "sausage party"
