@@ -12,9 +12,10 @@ BASE_URL = "https://tenor.com/search"
 SEARCH_TERM = "sausage party"
 # restricted to 50 for initial load
 # expansion possible, but requires more effort
-MAX_ITEM_COUNT = 50
+MAX_ITEM_COUNT = 5000
 BASE_DOWNLOAD_DIR = f"downloaded"
 DOWNLOAD_DIR = f"{BASE_DOWNLOAD_DIR}/{SEARCH_TERM}"
+THREAD_POOL_SIZE = 20
 
 
 def clean():
@@ -46,7 +47,7 @@ def main():
     gif_list_div = bs.find('div', attrs={'class': 'GifList'})
 
     # initialize thread pool
-    pool = ThreadPoolExecutor(20)
+    pool = ThreadPoolExecutor(THREAD_POOL_SIZE)
     gif_count = 1
     # handle single gifs
     for gif_item_fig in gif_list_div.find_all('figure', attrs={'class': 'GifListItem'}):

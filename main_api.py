@@ -8,11 +8,12 @@ from concurrent.futures import ThreadPoolExecutor
 from urllib import request
 
 SEARCH_TERM = "sausage party"
-MAX_ITEM_COUNT = 100
+MAX_ITEM_COUNT = 200
 BASE_DOWNLOAD_DIR = f"downloaded"
 DOWNLOAD_DIR = f"{BASE_DOWNLOAD_DIR}/{SEARCH_TERM}"
 API_KEY = "i_dont_matter_anyways"
 BASE_URL = f"https://g.tenor.com/v1/search?media_filter=minimal&limit=50&key={API_KEY}"
+THREAD_POOL_SIZE = 20
 
 
 def clean():
@@ -47,7 +48,7 @@ def main():
         gif_list_json = json.loads(urllib.request.urlopen(search_url).read())['results']
 
         # initialize thread pool
-        pool = ThreadPoolExecutor(20)
+        pool = ThreadPoolExecutor(THREAD_POOL_SIZE)
         gif_count = 1
         # handle single gifs
         for gif_item in gif_list_json:
