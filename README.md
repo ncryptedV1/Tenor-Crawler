@@ -1,5 +1,6 @@
 # Tenor-Crawler
 A small demonstration of web crawlers exemplary on tenor. Automatically crawl a set amount of gifs for a given search term.
+An implementation for using an API and parsing static websites.
 
 ## Prerequisites
 - [Python 3](https://www.python.org/) (adaptation to Python 2 is possible but requires a few tweaks)
@@ -19,3 +20,6 @@ A small demonstration of web crawlers exemplary on tenor. Automatically crawl a 
 
 ## Notes
 - by default both scripts work asynchronously with a thread pool of size 20 - can be adapted in `main` method
+
+## Presentation
+The slides of the presentation can be found [here](https://docs.google.com/presentation/d/1mUG8m51f02DZMbdAGZz4GQBeIMiC9Sgs4OaTIWvG5Nw/edit?usp=sharing).
